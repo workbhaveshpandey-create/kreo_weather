@@ -453,10 +453,19 @@ class WeatherHomeScreen extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemCount: weather.hourly.length,
                       separatorBuilder: (_, __) => const SizedBox(width: 10),
+                      // Cache extent for smoother scrolling
+                      cacheExtent: 500,
+                      padding: const EdgeInsets.only(right: 20),
                       itemBuilder: (context, index) {
                         final item = weather.hourly[index];
                         final isNow = index == 0;
 
+                        // Calculate colors based on background
+                        final textColor = isNow
+                            ? theme.scaffoldBackgroundColor
+                            : theme.colorScheme.onSurface;
+
+                        // Glass container
                         return BouncingGlassCard(
                           child: Container(
                             width: 64,
@@ -465,16 +474,14 @@ class WeatherHomeScreen extends StatelessWidget {
                               color: isNow
                                   ? theme.colorScheme.onSurface
                                   : (isDark
-                                        ? AppColors.surfaceVariant.withOpacity(
-                                            0.3,
-                                          )
-                                        : AppColors.lightSurface),
+                                        ? AppColors.glassDark
+                                        : AppColors
+                                              .glassLight), // Use new glass colors
                               border: isNow
                                   ? null
                                   : Border.all(
-                                      color: isDark
-                                          ? AppColors.divider
-                                          : AppColors.lightDivider,
+                                      color: AppColors
+                                          .glassBorder, // Use new glass border
                                     ),
                               borderRadius: BorderRadius.circular(16),
                             ),
@@ -487,34 +494,28 @@ class WeatherHomeScreen extends StatelessWidget {
                                       : DateFormat('h a').format(item.time),
                                   style: AppTextStyles.labelSmall(
                                     color: isNow
-                                        ? theme.scaffoldBackgroundColor
-                                        : theme.colorScheme.onSurfaceVariant,
+                                        ? textColor
+                                        : textColor.withOpacity(0.7),
                                   ),
                                 ),
                                 Icon(
                                   _getWeatherIcon(item.weatherCode),
                                   size: 22,
-                                  color: isNow
-                                      ? theme.scaffoldBackgroundColor
-                                      : theme.colorScheme.onSurface,
+                                  color: textColor,
                                 ),
                                 Text(
                                   '${item.temperature.round()}°',
                                   style: AppTextStyles.titleSmall(
-                                    color: isNow
-                                        ? theme.scaffoldBackgroundColor
-                                        : theme.colorScheme.onSurface,
+                                    color: textColor,
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                        ).animate().fadeIn(
-                          delay: Duration(milliseconds: 50 * index),
                         );
                       },
                     ),
-                  ),
+                  ).animate().fadeIn(duration: 600.ms, delay: 300.ms),
 
                   const SizedBox(height: 28),
 
@@ -532,13 +533,9 @@ class WeatherHomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
                         color: isDark
-                            ? AppColors.surfaceVariant.withOpacity(0.4)
-                            : AppColors.lightSurface,
-                        border: Border.all(
-                          color: isDark
-                              ? AppColors.divider
-                              : AppColors.lightDivider,
-                        ),
+                            ? AppColors.glassDark
+                            : AppColors.glassLight,
+                        border: Border.all(color: AppColors.glassBorder),
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Column(
@@ -549,7 +546,7 @@ class WeatherHomeScreen extends StatelessWidget {
                             .toList(),
                       ),
                     ),
-                  ),
+                  ).animate().fadeIn(duration: 600.ms, delay: 400.ms),
 
                   const SizedBox(height: 40),
                 ],

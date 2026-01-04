@@ -37,8 +37,9 @@ class AppColors {
   static const Color accent = Color(0xFF00D9FF);
 
   // Glass effect colors for glassmorphism
-  static const Color glassDark = Color(0x33FFFFFF); // 20% white
-  static const Color glassBorder = Color(0x22FFFFFF); // ~13% white border
+  static const Color glassDark = Color(0x22000000); // 13% black
+  static const Color glassLight = Color(0x33FFFFFF); // 20% white
+  static const Color glassBorder = Color(0x1AFFFFFF); // 10% white border
 
   // Card colors for grid
   static const Color cardUV = Color(0xFF1E1E2E);
@@ -46,18 +47,18 @@ class AppColors {
   static const Color cardHumidity = Color(0xFF1E2E2E);
 }
 
-/// Typography - Using Poppins
+/// Typography - Using Outfit (Cinematic Standard)
 class AppTextStyles {
   AppTextStyles._();
 
-  static TextStyle _poppins({
+  static TextStyle _outfit({
     required double size,
     FontWeight weight = FontWeight.normal,
     Color? color,
     double? height,
     double? letterSpacing,
   }) {
-    return GoogleFonts.poppins(
+    return GoogleFonts.outfit(
       fontSize: size,
       fontWeight: weight,
       color: color,
@@ -67,15 +68,15 @@ class AppTextStyles {
   }
 
   // Temperature Display
-  static TextStyle temperature({Color? color}) => _poppins(
-    size: 80,
-    weight: FontWeight.w200,
+  static TextStyle temperature({Color? color}) => _outfit(
+    size: 100,
+    weight: FontWeight.w100, // Thin
     color: color,
-    letterSpacing: -5,
+    letterSpacing: -6,
   );
 
   // Headlines
-  static TextStyle headline({Color? color}) => _poppins(
+  static TextStyle headline({Color? color}) => _outfit(
     size: 24,
     weight: FontWeight.w600,
     color: color,
@@ -83,87 +84,40 @@ class AppTextStyles {
   );
 
   static TextStyle title({Color? color}) =>
-      _poppins(size: 18, weight: FontWeight.w500, color: color);
+      _outfit(size: 18, weight: FontWeight.w500, color: color);
 
   static TextStyle titleSmall({Color? color}) =>
-      _poppins(size: 14, weight: FontWeight.w500, color: color);
+      _outfit(size: 14, weight: FontWeight.w500, color: color);
 
   // Body
   static TextStyle body({Color? color}) =>
-      _poppins(size: 14, weight: FontWeight.w400, color: color, height: 1.5);
+      _outfit(size: 14, weight: FontWeight.w400, color: color, height: 1.5);
 
   static TextStyle bodySmall({Color? color}) =>
-      _poppins(size: 12, weight: FontWeight.w400, color: color);
+      _outfit(size: 12, weight: FontWeight.w400, color: color);
 
   static TextStyle bodyLarge({Color? color}) =>
-      _poppins(size: 16, weight: FontWeight.w400, color: color, height: 1.6);
+      _outfit(size: 16, weight: FontWeight.w400, color: color, height: 1.6);
 
   // Labels
-  static TextStyle label({Color? color}) => _poppins(
+  static TextStyle label({Color? color}) => _outfit(
     size: 11,
-    weight: FontWeight.w500,
+    weight: FontWeight.w600,
     color: color,
     letterSpacing: 2,
   );
 
-  static TextStyle labelSmall({Color? color}) => _poppins(
+  static TextStyle labelSmall({Color? color}) => _outfit(
     size: 10,
-    weight: FontWeight.w500,
+    weight: FontWeight.w600,
     color: color,
     letterSpacing: 1.5,
   );
 
   // Card Title
   static TextStyle cardTitle({Color? color}) =>
-      _poppins(size: 13, weight: FontWeight.w500, color: color);
+      _outfit(size: 13, weight: FontWeight.w500, color: color);
 
   static TextStyle cardValue({Color? color}) =>
-      _poppins(size: 22, weight: FontWeight.w600, color: color);
-}
-
-/// Theme Configuration
-class AppTheme {
-  static ThemeData get darkTheme => ThemeData(
-    useMaterial3: true,
-    brightness: Brightness.dark,
-    primaryColor: AppColors.primary,
-    scaffoldBackgroundColor: AppColors.background,
-    colorScheme: const ColorScheme.dark(
-      primary: AppColors.primary,
-      secondary: AppColors.primary,
-      surface: AppColors.surface,
-      error: AppColors.error,
-      onSurface: AppColors.onSurface,
-      onSurfaceVariant: AppColors.onSurfaceVariant,
-    ),
-    textTheme: TextTheme(
-      bodyMedium: AppTextStyles.body(color: AppColors.onSurface),
-      bodySmall: AppTextStyles.bodySmall(color: AppColors.onSurfaceVariant),
-      titleMedium: AppTextStyles.title(color: AppColors.onSurface),
-      headlineSmall: AppTextStyles.headline(color: AppColors.onSurface),
-    ),
-  );
-
-  static ThemeData get lightTheme => ThemeData(
-    useMaterial3: true,
-    brightness: Brightness.light,
-    primaryColor: AppColors.lightOnBackground,
-    scaffoldBackgroundColor: AppColors.lightBackground,
-    colorScheme: const ColorScheme.light(
-      primary: AppColors.lightOnBackground,
-      secondary: AppColors.lightOnBackground,
-      surface: AppColors.lightSurface,
-      error: AppColors.error,
-      onSurface: AppColors.lightOnSurface,
-      onSurfaceVariant: AppColors.lightOnSurfaceVariant,
-    ),
-    textTheme: TextTheme(
-      bodyMedium: AppTextStyles.body(color: AppColors.lightOnSurface),
-      bodySmall: AppTextStyles.bodySmall(
-        color: AppColors.lightOnSurfaceVariant,
-      ),
-      titleMedium: AppTextStyles.title(color: AppColors.lightOnSurface),
-      headlineSmall: AppTextStyles.headline(color: AppColors.lightOnSurface),
-    ),
-  );
+      _outfit(size: 22, weight: FontWeight.w600, color: color);
 }

@@ -22,4 +22,27 @@ class AppTheme {
       headlineSmall: AppTextStyles.headline(color: AppColors.onSurface),
     ),
   );
+
+  static ThemeData get lightTheme => ThemeData(
+    useMaterial3: true,
+    brightness: Brightness.light,
+    primaryColor: AppColors.lightOnBackground,
+    scaffoldBackgroundColor: AppColors.lightBackground,
+    colorScheme: const ColorScheme.light(
+      primary: AppColors.lightOnBackground,
+      secondary: AppColors.lightOnBackground,
+      surface: AppColors.lightSurface,
+      error: AppColors.error,
+      onSurface: AppColors.lightOnSurface,
+      onSurfaceVariant: AppColors.lightOnSurfaceVariant,
+    ),
+    textTheme: TextTheme(
+      bodyMedium: AppTextStyles.body(color: AppColors.lightOnSurface),
+      bodySmall: AppTextStyles.bodySmall(
+        color: AppColors.lightOnSurfaceVariant,
+      ),
+      titleMedium: AppTextStyles.title(color: AppColors.lightOnSurface),
+      headlineSmall: AppTextStyles.headline(color: AppColors.lightOnSurface),
+    ),
+  );
 }

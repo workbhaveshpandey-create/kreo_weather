@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'app/theme/app_colors.dart';
+import 'app/theme/app_theme.dart'; // Add this
 import 'app/theme/theme_cubit.dart';
 import 'core/services/background_service.dart';
 import 'core/services/location_service.dart';
